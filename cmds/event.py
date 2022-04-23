@@ -27,21 +27,27 @@ class event(Cog_Extension):
         if msg.content in keyword and msg.author != self.bot.user:
             await msg.channel.send('吵三小')
 
-    @commands.Cog.listener()
+    @commands.Cog.listener() #新增身分組
     async def on_raw_reaction_add(self, data):
         print(str(data.emoji))
-        if str(data.emoji) == '⚔️':
-            print("work")
-            guild = self.bot.get_guild(data.guild_id)
-            role = guild.get_role(967460666518679572)
-            await data.member.add_roles(role)
-    @commands.Cog.listener()
+        if data.message_id == 967470412164390973: #指定訊息ID
+            if str(data.emoji) == '⚔️':
+                #print("work")
+                guild = self.bot.get_guild(data.guild_id)
+                role = guild.get_role(967460666518679572) #指定身分組ID
+                await data.member.add_roles(role)
+                await data.member.send(f"你取得了 {role} 身分組")
+    @commands.Cog.listener() #移除身分組
     async def on_raw_reaction_remove(self, data):
         print(str(data.emoji))
-        if str(data.emoji) == '⚔️':
-            print("work")
-            guild = self.bot.get_guild(data.guild_id)
-            role = guild.get_role(967460666518679572)
-            await data.member.remove_roles(role)
+        if data.message_id == 967470412164390973: #指定訊息ID
+            if str(data.emoji) == '⚔️':
+                #print("work")
+                guild = self.bot.get_guild(data.guild_id)
+                user = guild.get_member(data.user_id)
+                role = guild.get_role(967460666518679572) #指定身分組ID
+                await user.remove_roles(role)
+                await user.send(f"你移除了 {role} 身分組")
+
 def setup(bot): #註冊
     bot.add_cog(event(bot))
