@@ -73,7 +73,7 @@ class event(Cog_Extension):
 
     @commands.Cog.listener() #移除身分組
     async def on_raw_reaction_remove(self, data):
-        print(str(data.emoji))
+        #print(str(data.emoji))
         if data.message_id == int(jdata['role_msg']): #指定訊息ID
             if str(data.emoji) == '⚔️':
                 guild = self.bot.get_guild(data.guild_id)
@@ -87,25 +87,25 @@ class event(Cog_Extension):
                 role = guild.get_role(int(jdata["role_car"])) #指定身分組ID               
                 await user.remove_roles(role)
                 await user.send(f"你移除了 {role} 身分組")
-            elif str(data.emoji) == ':jack_GBF_FFG:':
+            elif str(data.emoji) == '<:jack_GBF_FFG:640901912866324481>':
                 guild = self.bot.get_guild(data.guild_id)
                 user = guild.get_member(data.user_id)
                 role = guild.get_role(int(jdata["role_GBF"])) #指定身分組ID               
                 await user.remove_roles(role)
                 await user.send(f"你移除了 {role} 身分組")
-            elif str(data.emoji) == ':jack_poe:':
+            elif str(data.emoji) == '<:jack_poe:848102597263884299>':
                 guild = self.bot.get_guild(data.guild_id)
                 user = guild.get_member(data.user_id)
                 role = guild.get_role(int(jdata["role_POE"])) #指定身分組ID               
                 await user.remove_roles(role)
                 await user.send(f"你移除了 {role} 身分組")
-            elif str(data.emoji) == ':jack_minecraft:':
+            elif str(data.emoji) == '<:jack_minecraft:848106005225406485>':
                 guild = self.bot.get_guild(data.guild_id)
                 user = guild.get_member(data.user_id)
                 role = guild.get_role(int(jdata["role_MC"])) #指定身分組ID               
                 await user.remove_roles(role)
                 await user.send(f"你移除了 {role} 身分組")
-            elif str(data.emoji) == ':jack_maplestory:':
+            elif str(data.emoji) == '<:jack_maplestory:848103098009649214>':
                 guild = self.bot.get_guild(data.guild_id)
                 user = guild.get_member(data.user_id)
                 role = guild.get_role(int(jdata["role_MS"])) #指定身分組ID               
