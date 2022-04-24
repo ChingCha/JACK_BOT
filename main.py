@@ -3,7 +3,7 @@ from discord.ext import commands, tasks
 import json
 import random
 import os
-
+#import keep_alive
 with open('setting.json','r',encoding='utf8') as jfile:
     jdata = json.load(jfile)
 
@@ -42,5 +42,5 @@ async def reload(ctx, extension):
 for filename in os.listdir('./cmds'):
     if filename.endswith('.py'):
         bot.load_extension(F'cmds.{filename[:-3]}')
-
+#keep_alive.keep_alive()
 bot.run(jdata['TOKEN'])

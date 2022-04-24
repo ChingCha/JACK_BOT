@@ -31,8 +31,8 @@ class event(Cog_Extension):
 
     @commands.Cog.listener() #新增身分組
     async def on_raw_reaction_add(self, data):
-        print(str(data.message_id))
-        print(str(data.emoji))
+        #print(str(data.message_id))
+        #print(str(data.emoji))
         if data.message_id == int(jdata['role_msg']): #指定訊息ID
             if str(data.emoji) == '⚔️':
                 guild = self.bot.get_guild(data.guild_id)
@@ -42,37 +42,31 @@ class event(Cog_Extension):
             elif str(data.emoji) == '🚗':
                 guild = self.bot.get_guild(data.guild_id)
                 role = guild.get_role(int(jdata["role_car"])) #指定身分組ID
-                print(role)
                 await data.member.add_roles(role)
                 await data.member.send(f"你取得了 {role} 身分組")
             elif str(data.emoji) == '<:jack_GBF_FFG:640901912866324481>':
                 guild = self.bot.get_guild(data.guild_id)
                 role = guild.get_role(int(jdata["role_GBF"])) #指定身分組ID
-                print(role)
                 await data.member.add_roles(role)
                 await data.member.send(f"你取得了 {role} 身分組")
             elif str(data.emoji) == '<:jack_poe:848102597263884299>':
                 guild = self.bot.get_guild(data.guild_id)
                 role = guild.get_role(int(jdata["role_POE"])) #指定身分組ID
-                print(role)
                 await data.member.add_roles(role)
                 await data.member.send(f"你取得了 {role} 身分組")
             elif str(data.emoji) == '<:jack_minecraft:848106005225406485>':
                 guild = self.bot.get_guild(data.guild_id)
                 role = guild.get_role(int(jdata["role_MC"])) #指定身分組ID
-                print(role)
                 await data.member.add_roles(role)
                 await data.member.send(f"你取得了 {role} 身分組")
             elif str(data.emoji) == '<:jack_maplestory:848103098009649214>':
                 guild = self.bot.get_guild(data.guild_id)
                 role = guild.get_role(int(jdata["role_MS"])) #指定身分組ID
-                print(role)
                 await data.member.add_roles(role)
                 await data.member.send(f"你取得了 {role} 身分組")
             elif str(data.emoji) == '<:jack_work2:585786773112881172>':
                 guild = self.bot.get_guild(data.guild_id)
                 role = guild.get_role(int(jdata["role_8+9"])) #指定身分組ID
-                print(role)
                 await data.member.add_roles(role)
                 await data.member.send(f"你取得了 {role} 身分組")
 
