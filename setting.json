@@ -1,8 +1,18 @@
 {
     "TOKEN":"NTM4NjIzNDYzODA4ODI3Mzky.XEwOMA.2trcPg2LwmIProP5jio6tUs6Ij0",
-    "lobby":"967282468958908497",
+    "lobby":"510867461713821699",
+    "post":"529615831563239429",
+    "welcome_pic":"https://i.imgur.com/OAvyfui.gif",
 
-    "welcome_pic":"https://i.imgur.com/fKJDqtU.jpg",
+    "APIToken":"CWB-168DA0A5-FGH0-42D9-C50A-49G0004CCD0",
 
-    "APIToken":"CWB-168DA0A5-FGH0-42D9-C50A-49G0004CCD0"
+    "role_msg":"529634245468225537",
+    
+    "role_brother":"510868324088021024",
+    "role_car":"716178488486395905",
+    "role_GBF":"843801780123074580",
+    "role_POE":"843802079558107176",
+    "role_MC":"848104145243471912",
+    "role_MS":"848103968620937236",
+    "role_8+9":"579561880998248448"
 }

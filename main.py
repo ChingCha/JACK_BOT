@@ -19,7 +19,7 @@ async def on_ready():
     print(">> Bot is online <<")
     Jstatus = discord.Status.dnd
     #discord.Status.<狀態>，可以是online（上線）,offline（下線）,idle（閒置）,dnd（請勿打擾）,invisible（隱身）
-    Jactivity = discord.Game(name="Visual Studio Code",type = 3)
+    Jactivity = discord.Game(name="NEKOPARA Vol. JACK",type = 3)
     #type可以是playing（遊玩中）、streaming（直撥中）、listening（聆聽中）、watching（觀看中）、custom（自定義）
     await bot.change_presence(status = Jstatus, activity = Jactivity)
 
