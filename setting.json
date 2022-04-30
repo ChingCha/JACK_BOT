@@ -1,18 +1,24 @@
 {
-    "TOKEN":"",
-    "lobby":"9",
-    "post":"9",
-    "welcome_pic":"https://i.imgur.com/OAvyfui.gif",
+    "TOKEN":"機器人TOKEN",
+    "lobby":"歡迎的文字頻道id",
+    "post":"529615831563239429",
+    "welcome_pic":"歡迎的圖片檔",
 
-    "APIToken":"",
+    "APIToken":"氣象局APIToken",
 
-    "role_msg":"",
+    "role_msg":"身分組加入的訊息id",
     
-    "role_brother":"",
-    "role_car":"",
-    "role_GBF":"",
-    "role_POE":"",
-    "role_MC":"",
-    "role_MS":"",
-    "role_8+9":""
+    "role_brother":"身分組",
+    "role_car":"身分組",
+    "role_GBF":"身分組",
+    "role_POE":"身分組6",
+    "role_MC":"身分組",
+    "role_MS":"身分組",
+    "role_8+9":"身分組",
+    "warning":"告警的tag",
+    "warning_channels":"告警的頻道",
+    "JsonUrl":"Json線上1",
+    "JsonUrlToken":"Json線上1 key",
+    "JsonUrl_cloudburst":"Json線上2",
+    "JsonUrlToken_cloudburst":"Json線上2 key"
 }

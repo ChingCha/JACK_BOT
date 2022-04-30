@@ -1,0 +1,192 @@
+{
+  "success": "true",
+  "result": {
+    "resource_id": "E-A0016-001",
+    "fields": [
+      {
+        "id": "reportType",
+        "type": "String"
+      },
+      {
+        "id": "earthquakeNo",
+        "type": "Integer"
+      },
+      {
+        "id": "reportContent",
+        "type": "String"
+      },
+      {
+        "id": "reportColor",
+        "type": "String"
+      },
+      {
+        "id": "web",
+        "type": "String"
+      },
+      {
+        "id": "reportImageURI",
+        "type": "String"
+      },
+      {
+        "id": "originTime",
+        "type": "Timestamp"
+      },
+      {
+        "id": "unit",
+        "type": "String"
+      },
+      {
+        "id": "value",
+        "type": "Double"
+      },
+      {
+        "id": "magnitudeType",
+        "type": "String"
+      },
+      {
+        "id": "magnitudeValue",
+        "type": "Float"
+      },
+      {
+        "id": "source",
+        "type": "String"
+      },
+      {
+        "id": "areaDesc",
+        "type": "String"
+      },
+      {
+        "id": "areaName",
+        "type": "String"
+      },
+      {
+        "id": "infoStatus",
+        "type": "String"
+      },
+      {
+        "id": "stationName",
+        "type": "String"
+      },
+      {
+        "id": "stationCode",
+        "type": "String"
+      },
+      {
+        "id": "vComponent",
+        "type": "String"
+      },
+      {
+        "id": "nsComponent",
+        "type": "String"
+      },
+      {
+        "id": "ewComponent",
+        "type": "String"
+      },
+      {
+        "id": "intScaleValue",
+        "type": "String"
+      }
+    ]
+  },
+  "records": {
+    "datasetDescription": "地震報告",
+    "earthquake": [
+      {
+        "earthquakeNo": 111000,
+        "reportType": "地震報告",
+        "reportColor": "綠色",
+        "reportContent": "04/29-19:17臺南市西港區發生規模2.7有感地震，最大震度臺南市佳里1級。",
+        "reportImageURI": "https://scweb.cwb.gov.tw/webdata/OLDEQ/202204/2022042919173427_H.png",
+        "reportRemark": "本報告係中央氣象局地震觀測網即時地震資料地震速報之結果。",
+        "web": "https://scweb.cwb.gov.tw/zh-tw/earthquake/details/2022042919173427",
+        "earthquakeInfo": {
+          "originTime": "2022-04-29 19:17:34",
+          "source": "中央氣象局",
+          "depth": {
+            "value": 15.3,
+            "unit": "公里"
+          },
+          "epiCenter": {
+            "location": "臺南市政府北方  17.0  公里 (位於臺南市西港區)",
+            "epiCenterLat": {
+              "value": 23.14,
+              "unit": "度"
+            },
+            "epiCenterLon": {
+              "unit": "度",
+              "value": 120.21
+            }
+          },
+          "magnitude": {
+            "magnitudeType": "芮氏規模",
+            "magnitudeValue": 5
+          }
+        },
+        "intensity": {
+          "shakingArea": [
+            {
+              "areaDesc": "臺南市地區",
+              "areaName": "臺南市",
+              "infoStatus": "observe",
+              "areaIntensity": {
+                "value": 1,
+                "unit": "級"
+              },
+              "eqStation": [
+                {
+                  "stationName": "佳里",
+                  "stationCode": "SCL",
+                  "infoStatus": "observe",
+                  "azimuth": {
+                    "value": 161.71,
+                    "unit": "度"
+                  },
+                  "distance": {
+                    "unit": "公里",
+                    "value": 3.52
+                  },
+                  "pga": {
+                    "ewComponent": 3.7,
+                    "nsComponent": 1.8,
+                    "vComponent": 0.97,
+                    "intScaleValue": 2.02,
+                    "unit": "gal"
+                  },
+                  "pgv": {
+                    "ewComponent": 0.05,
+                    "nsComponent": 0.03,
+                    "vComponent": 0.02,
+                    "intScaleValue": 0.05,
+                    "unit": "kine"
+                  },
+                  "stationIntensity": {
+                    "value": 1,
+                    "unit": "級"
+                  },
+                  "stationLat": {
+                    "value": 23.17,
+                    "unit": "度"
+                  },
+                  "stationLon": {
+                    "value": 120.2,
+                    "unit": "度"
+                  }
+                }
+              ]
+            },
+            {
+              "areaDesc": "最大震度1級地區",
+              "areaName": "臺南市",
+              "areaIntensity": {
+                "value": 1,
+                "unit": "級"
+              },
+              "eqStation": []
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

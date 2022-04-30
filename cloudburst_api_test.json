@@ -1,0 +1,98 @@
+{
+  "success": "true",
+  "result": {
+    "resource_id": "W-C0033-002",
+    "fields": [
+      {
+        "id": "datasetDescription",
+        "type": "String"
+      },
+      {
+        "id": "datasetLanguage",
+        "type": "String"
+      },
+      {
+        "id": "issueTime",
+        "type": "String"
+      },
+      {
+        "id": "startTime",
+        "type": "Timestamp"
+      },
+      {
+        "id": "endTime",
+        "type": "Timestamp"
+      },
+      {
+        "id": "update",
+        "type": "String"
+      },
+      {
+        "id": "contentLanguage",
+        "type": "String"
+      },
+      {
+        "id": "contentText",
+        "type": "String"
+      },
+      {
+        "id": "language",
+        "type": "String"
+      },
+      {
+        "id": "phenomena",
+        "type": "String"
+      },
+      {
+        "id": "significance",
+        "type": "String"
+      },
+      {
+        "id": "locationName",
+        "type": "String"
+      }
+    ]
+  },
+  "records": {
+    "record": [
+      {
+        "datasetInfo": {
+          "datasetDescription": "大雨特報",
+          "datasetLanguage": "zh-TW",
+          "validTime": {
+            "startTime": "2022-04-29 19:19:00",
+            "endTime": "2022-04-29 23:00:00"
+          },
+          "issueTime": 1651260353000
+        },
+        "contents": {
+          "content": {
+            "contentLanguage": "zh-TW",
+            "contentText": "\n                對流雲系發展旺盛，易有短延時強降雨，今（２９日）晚間臺東地區有局部大雨發生的機率，請注意。\n                "
+          }
+        },
+        "hazardConditions": {
+          "hazards": {
+            "hazard": {
+              "info": {
+                "language": "zh-TW",
+                "phenomena": "大雨",
+                "significance": "特報",
+                "affectedAreas": {
+                  "location": [
+                    {
+                      "locationName": "臺東縣"
+                    },
+                    {
+                      "locationName": "蘭嶼綠島"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}
