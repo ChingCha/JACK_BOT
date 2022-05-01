@@ -24,6 +24,8 @@ JsonUrl = "https://api.jsonstorage.net/v1/json/" + jdata["JsonUrl"]
 JsonUrlToken = jdata["JsonUrlToken"]
 JsonUrl_cloudburst = "https://api.jsonstorage.net/v1/json/" + jdata["JsonUrl_cloudburst"]
 JsonUrlToken_cloudburst = jdata["JsonUrlToken_cloudburst"]
+JsonUrlS = "https://api.jsonstorage.net/v1/json/" + jdata["JsonUrlS"]
+JsonUrlSToken = jdata["JsonUrlSToken"]
 ##############
 def setup():
     try:
@@ -97,32 +99,32 @@ async def earthquake():
     _API = b["records"]["earthquake"][0]["earthquakeInfo"]["originTime"]
     _API2 = s["records"]["earthquake"][0]["earthquakeInfo"]["originTime"]
     _API3 = r["records"]["record"]
-    async def goTo(how, now):
+    async def goToBIG():
         for ch in data.channels:
-            if how != API3:
-                await sosIn(bot.get_channel(ch), ({API: b, API2: s}[how]), data)
-                requests.put(f"{JsonUrl}?apiKey={JsonUrlToken}", json=now)
-            else:
-                await Rain(bot.get_channel(ch), ({API3: r}[how]), data)
-                requests.put(f"{JsonUrl_cloudburst}?apiKey={JsonUrlToken_cloudburst}", json=now)
-
+            await sosIn(bot.get_channel(ch), data, b)
+            requests.put(f"{JsonUrl}?apiKey={JsonUrlToken}", json=b)
+            print(f"成功發布地震警報")   
+    async def goToS():
+        for ch in data.channels:
+            await sosIn(bot.get_channel(ch), data, s)
+            requests.put(f"{JsonUrlS}?apiKey={JsonUrlSToken}", json=s)
+            print(f"成功發布小型地震警報")  
+    async def toRain():
+        for ch in data.channels:
+            await Rain(bot.get_channel(ch) , data, r)
+            web = jdata["JsonUrlToken_cloudburst"]
+            requests.put(web, json=r)
+            print(f"成功發布天氣警報")
     file = requests.get(f"{JsonUrl}").json() or {}
-    for i in [API, API2]:
-        if not file.get(i):
-            print(f"file[i]:{file[i]}")
-            file[i] = ""
-    if file[API] != _API:
-        print(f"file[API]:{file[API]}")
-        file[API] = _API
-        await goTo(API, file)
-    if file[API2] != _API2:
-        print(f"file[API]:{file[API]}")
-        file[API2] = _API2
-        await goTo(API2, file)
+    if file["records"]["earthquake"][0]["earthquakeInfo"]["originTime"] != _API:
+        await goToBIG()
+    file2 = requests.get(f"{JsonUrlS}").json() or {}
+    if file2["records"]["earthquake"][0]["earthquakeInfo"]["originTime"] != _API2:
+        await goToS()
+    cloudburst = requests.get(f"{JsonUrl_cloudburst}").json() or {}    
+    if cloudburst["records"]["record"] != _API3:       
+        await toRain()
 
-    cloudburst = requests.get(f"{JsonUrl_cloudburst}").json() or {}
-    if cloudburst["records"]["record"] != _API3:
-        await goTo(API3, cloudburst)
 #########
 #keep_alive.keep_alive() #repl.it架設解除註解
 bot.run(jdata['TOKEN'])

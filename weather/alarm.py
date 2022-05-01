@@ -1,8 +1,10 @@
 import discord
 import datetime
 import json
+
 with open('setting.json','r',encoding='utf8') as jfile:
     jdata = json.load(jfile)
+
 
 class sets:
     __slots__ = ["checkFile", "channels", "Tags", "APIToken", "token"]
@@ -14,7 +16,7 @@ class sets:
         self.APIToken = APIToken
         self.token = token
 
-
+ 
 def checkSos(ac):
     return {
         "0": "⚪",
@@ -45,9 +47,9 @@ def Description_icon(type):
     else:
         return "🌧"
 
-async def sosIn(channel, data, sets: sets):
+async def sosIn(channel, data, b):
     try:
-        inp = data["records"]["earthquake"][0]
+        inp = b["records"]["earthquake"][0]
         inpInfo = inp["earthquakeInfo"]
         reportType = inp["reportType"]  #報告種類
         reportContent = inp["reportContent"]    #報告敘述
@@ -76,26 +78,27 @@ async def sosIn(channel, data, sets: sets):
         embed.add_field(name="深度", value=f"{str(dep)}{value}{unit}", inline=True)
         embed.add_field(name=f"{areaDesc}", value=f"{areaName}", inline=False)
         embed.set_footer(text="警特報提供：臺灣交通部中央氣象局", icon_url='https://i.imgur.com/NwLYUXr.png')
-
+        channels=jdata['warning_channels']
         if int(magnitudeValue) >= 5:            
             ccr = jdata["warning"]
-            await channel.send(f"⚠️ <@&{ccr}> 芮氏5.0以上地震報告⚠️")
+            await channels.send(f"⚠️ <@&{ccr}> 芮氏5.0以上地震報告⚠️")
         await channel.send(embed=embed)
     except Exception as err:
         print(err)
 
-async def Rain(channel, data, sets: sets):
+async def Rain(channel, data, r):
     try:
-        inp = data["records"]["record"][0]
+        inp = r["records"]["record"][0]
         inpInfo = inp["datasetInfo"]
         contentText = inp["contents"]["content"]["contentText"]
         Description = inpInfo["datasetDescription"] #氣象類型
         icon_emoji = Description_icon(Description)
-        await channel.send(f'{icon_emoji} {Description} 訊息發送測試')
+        await channel.send(f'{icon_emoji} {Description} ')
         embed=discord.Embed(title=f"{icon_emoji} {Description}", description=f"{contentText}", color=0x00ffd5, timestamp=datetime.datetime.utcnow())
         embed.set_author(name="Taiwan OpenData System", icon_url="https://imgur.com/qtSQyzd.png")
         embed.add_field(name="警特報連結", value=f"[中央氣象局](https://www.cwb.gov.tw/V8/C/P/Warning/W26.html?T=202204291915)", inline=True)
-        embed.set_footer(text="警特報提供：臺灣交通部中央氣象局", icon_url='https://i.imgur.com/NwLYUXr.png')
+        embed.set_footer(text="警特報提供：臺灣交通部中央氣象局", icon_url='https://i.imgur.com/NwLYUXr.png')       
+        print("su")
         await channel.send(embed=embed)
     except Exception as err:
         print(err)
