@@ -125,6 +125,6 @@ async def earthquake():
     if cloudburst["records"]["record"] != _API3:       
         await toRain()
 
-#########
+##########
 #keep_alive.keep_alive() #repl.it架設解除註解
 bot.run(jdata['TOKEN'])
