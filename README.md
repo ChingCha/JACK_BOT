@@ -1,7 +1,7 @@
 # JACK替身使者(JACK_BOT)
 > 此機器人為Discord伺服器JACK堂所使用。 <br>
 > 目的只是想學習Discord如何撰寫。 <br>
-> 本人只在大學學習過Python兩個學習，可以算是新手。 <br>
+> 本人只在大學學習過Python兩個學期，可以算是新手。 <br>
 
 ## JACK_BOT功能
 - 身分組
