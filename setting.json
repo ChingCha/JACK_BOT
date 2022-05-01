@@ -20,5 +20,6 @@
     "JsonUrl":"Json線上1",
     "JsonUrlToken":"Json線上1 key",
     "JsonUrl_cloudburst":"Json線上2",
-    "JsonUrlToken_cloudburst":"Json線上2 key"
+    "JsonUrlToken_cloudburst":"Json線上2 key",
+    "JACK":"JACK的ID"
 }

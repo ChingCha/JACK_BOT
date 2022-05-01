@@ -37,6 +37,14 @@ def depthSos(dc):
     elif int(dc) > 300:
         return "🟢"
 
+def Description_icon(type):
+    if type == "濃霧":
+        return "🌫"
+    elif type == "陸上強風":
+        return " 🌪"
+    else:
+        return "🌧"
+
 async def sosIn(channel, data, sets: sets):
     try:
         inp = data["records"]["earthquake"][0]
@@ -56,7 +64,7 @@ async def sosIn(channel, data, sets: sets):
         areaDesc = inp["intensity"]["shakingArea"][1]["areaDesc"]
         areaName = inp["intensity"]["shakingArea"][1]["areaName"]
         reportImageURI = inp["reportImageURI"]
-        await channel.send(f'🏚️ {reportType} 訊息發送測試')
+        await channel.send(f'🏚️ {reportType}')
         embed=discord.Embed(title=f"🏚️{reportType}", description=f"{reportContent}", color=0x00ffd5, timestamp=datetime.datetime.utcnow())
         embed.set_author(name="Taiwan EEW System", icon_url="https://i.imgur.com/zirawV0.png")
         embed.set_image(url=f"{reportImageURI}")
@@ -72,6 +80,22 @@ async def sosIn(channel, data, sets: sets):
         if int(magnitudeValue) >= 5:            
             ccr = jdata["warning"]
             await channel.send(f"⚠️ <@&{ccr}> 芮氏5.0以上地震報告⚠️")
+        await channel.send(embed=embed)
+    except Exception as err:
+        print(err)
+
+async def Rain(channel, data, sets: sets):
+    try:
+        inp = data["records"]["record"][0]
+        inpInfo = inp["datasetInfo"]
+        contentText = inp["contents"]["content"]["contentText"]
+        Description = inpInfo["datasetDescription"] #氣象類型
+        icon_emoji = Description_icon(Description)
+        await channel.send(f'{icon_emoji} {Description} 訊息發送測試')
+        embed=discord.Embed(title=f"{icon_emoji} {Description}", description=f"{contentText}", color=0x00ffd5, timestamp=datetime.datetime.utcnow())
+        embed.set_author(name="Taiwan OpenData System", icon_url="https://imgur.com/qtSQyzd.png")
+        embed.add_field(name="警特報連結", value=f"[中央氣象局](https://www.cwb.gov.tw/V8/C/P/Warning/W26.html?T=202204291915)", inline=True)
+        embed.set_footer(text="警特報提供：臺灣交通部中央氣象局", icon_url='https://i.imgur.com/NwLYUXr.png')
         await channel.send(embed=embed)
     except Exception as err:
         print(err)

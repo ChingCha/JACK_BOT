@@ -1,12 +1,13 @@
 import discord
 import requests
-from discord.ext import commands, tasks
 import json
-from dotenv import load_dotenv
 import random
 import os
-from report.EQR import *
-from report.Rain import *
+
+from discord.ext import commands, tasks
+from dotenv import load_dotenv
+from weather.alarm import *
+
 #import keep_alive
 with open('setting.json','r',encoding='utf8') as jfile:
     jdata = json.load(jfile)
@@ -17,13 +18,13 @@ intents.members = True
 
 load_dotenv()
 bot = commands.Bot(command_prefix='-j', intents=intents)
-#
 data = sets(jdata['TOKEN'], APIToken=jdata['APIToken'], channels=jdata['warning_channels'], Tags=jdata['warning'])
+###線上json###
 JsonUrl = "https://api.jsonstorage.net/v1/json/" + jdata["JsonUrl"]
 JsonUrlToken = jdata["JsonUrlToken"]
-
 JsonUrl_cloudburst = "https://api.jsonstorage.net/v1/json/" + jdata["JsonUrl_cloudburst"]
 JsonUrlToken_cloudburst = jdata["JsonUrlToken_cloudburst"]
+##############
 def setup():
     try:
         open(data.checkFile)
@@ -79,7 +80,7 @@ for filename in os.listdir('./cmds'):
         bot.load_extension(F"cmds.{filename[:-3]}")
 
 
-#
+###計時偵測###
 @tasks.loop(seconds=10)
 async def earthquake():
     # 大型地震
@@ -122,7 +123,6 @@ async def earthquake():
     cloudburst = requests.get(f"{JsonUrl_cloudburst}").json() or {}
     if cloudburst["records"]["record"] != _API3:
         await goTo(API3, cloudburst)
-
-#
-#keep_alive.keep_alive()
+#########
+#keep_alive.keep_alive() #repl.it架設解除註解
 bot.run(jdata['TOKEN'])

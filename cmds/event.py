@@ -23,11 +23,16 @@ class event(Cog_Extension):
     
     @commands.Cog.listener()
     async def on_message(self, msg):
-        keyword = ['jack','JACK','jack老大','JACK老大']
+        jack = jdata['JACK']
+        keyword = ['jack','JACK','jack老大','JACK老大','JACK大禮包']
         if msg.content in keyword and msg.author != self.bot.user:
-            await msg.channel.send('請先儲值在與我說話')
-        elif msg.content.startswith('jack') and msg.author != self.bot.user:
-            await msg.channel.send(f'請先儲值在與我說話')
+            await msg.channel.send('首儲禮包888，即可獲得闡釋者及逐闇者')
+        elif msg.content.startswith(f'jack') and msg.author != self.bot.user:
+            await msg.channel.send(f'https://i.imgur.com/4nwdJLi.jpg')
+        elif msg.content.startswith(f'JACK表示') and msg.author != self.bot.user:
+            await msg.channel.send(f'https://imgur.com/RH1kWMQ.gif')
+        elif msg.content.startswith(f'<@{jack}>') and msg.author != self.bot.user:
+            await msg.channel.send(f'https://i.imgur.com/g5NNpXW.png')
 
     @commands.Cog.listener() #新增身分組
     async def on_raw_reaction_add(self, data):
