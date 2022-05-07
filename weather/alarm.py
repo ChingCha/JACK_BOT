@@ -40,9 +40,9 @@ def depthSos(dc):
         return "🟢"
 
 def Description_icon(type):
-    if type == "濃霧":
+    if type == "濃霧特報":
         return "🌫"
-    elif type == "陸上強風":
+    elif type == "陸上強風特報":
         return " 🌪"
     else:
         return "🌧"
