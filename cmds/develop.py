@@ -34,9 +34,6 @@ def WXRT(dc):
     else: return "0"
 
 class develop(Cog_Extension):
-    @commands.command() #-jping
-    async def ping(self, ctx):    #ctx = context 問與答 上下文
-        await ctx.send(f'機器人延遲時間：{round(self.bot.latency*1000)} ms')
 
     @commands.command() #-jabout
     async def about(self, ctx):

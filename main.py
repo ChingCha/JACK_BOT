@@ -1,3 +1,4 @@
+from encodings import utf_8
 import discord
 import requests
 import json
@@ -7,17 +8,30 @@ import os
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 from weather.alarm import *
-
+from imgsauce.config import config
+#from imgsauce.saucebot import bot
 #import keep_alive
 with open('setting.json','r',encoding='utf8') as jfile:
     jdata = json.load(jfile)
+
+
+from imgsauce.bot import bot
+from imgsauce.cogs.admin import Admin
+from imgsauce.cogs.misc import Misc
+from imgsauce.cogs.sauce import Sauce
+from imgsauce.config import config
+from imgsauce.log import log
 
 intents = discord.Intents.default() #all none default
 intents.members = True
 # 事件定義 特定事件
 
 load_dotenv()
-bot = commands.Bot(command_prefix='-j', intents=intents)
+#bot = commands.Bot(command_prefix='-j', intents=intents)
+bot = commands.AutoShardedBot(
+    command_prefix=[p.strip() for p in str(config.get('Bot', 'command_prefixes', fallback='-j')).split(',')],
+    case_insensitive=True,
+)
 data = sets(jdata['TOKEN'], APIToken=jdata['APIToken'], channels=jdata['warning_channels'], Tags=jdata['warning'])
 ###線上json###
 JsonUrl = "https://api.jsonstorage.net/v1/json/" + jdata["JsonUrl"]
@@ -26,6 +40,11 @@ JsonUrl_cloudburst = "https://api.jsonstorage.net/v1/json/" + jdata["JsonUrl_clo
 JsonUrlToken_cloudburst = jdata["JsonUrlToken_cloudburst"]
 JsonUrlS = "https://api.jsonstorage.net/v1/json/" + jdata["JsonUrlS"]
 JsonUrlSToken = jdata["JsonUrlSToken"]
+
+bot.add_cog(Sauce())
+bot.add_cog(Misc())
+bot.add_cog(Admin())
+
 ##############
 def setup():
     try:
@@ -52,6 +71,9 @@ async def on_ready():
     print(bot.user.id)
     print(bot.user)
     print("-"*15)
+    log.info(f'Logged in as {bot.user.name} ({bot.user.id})')
+    print(f'{bot.user.display_name} is in {len(bot.guilds)} guild(s) and ready for work!')
+    print('------')
     if data.APIToken:
         earthquake.start()
         print("地震報告啟動")
@@ -76,6 +98,9 @@ async def reload(ctx, extension):
     bot.reload_extension(f'cmds.{extension}')
     await ctx.send(f'重新載入 {extension} 指令庫。')  
 
+@bot.command()
+async def tag(ctx):
+    await ctx.send(f"⚠️ @everyone 注意，感謝大家的注意⚠️") 
 
 for filename in os.listdir('./cmds'):
     if filename.endswith('.py'):
@@ -83,14 +108,14 @@ for filename in os.listdir('./cmds'):
 
 
 ###計時偵測###
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=3)
 async def earthquake():
     # 大型地震
-    API = f"https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0015-001?Authorization={data.APIToken}&format=JSON&areaName="
+    API = f"https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0015-001?Authorization={data.APIToken}&limit=1&offset=0&format=JSON"
     # 小型地震
-    API2 = f"https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0016-001?Authorization={data.APIToken}&format=JSON"
+    API2 = f"https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0016-001?Authorization={data.APIToken}&limit=1&offset=0&format=JSON"
     #天氣警特報
-    API3 = f"https://opendata.cwb.gov.tw/api/v1/rest/datastore/W-C0033-002?Authorization={data.APIToken}&format=JSON"
+    API3 = f"https://opendata.cwb.gov.tw/api/v1/rest/datastore/W-C0033-002?Authorization={data.APIToken}&limit=1&offset=0&format=JSON"
 
     b = requests.get(API).json()
     s = requests.get(API2).json()
