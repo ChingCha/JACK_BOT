@@ -80,8 +80,7 @@ async def sosIn(channel, data, b):
         embed.set_footer(text="警特報提供：臺灣交通部中央氣象局", icon_url='https://i.imgur.com/NwLYUXr.png')
         channels=jdata['warning_channels']
         if int(magnitudeValue) >= 5:            
-            ccr = jdata["warning"]
-            await channels.send(f"⚠️ <@&{ccr}> 芮氏5.0以上地震報告⚠️")
+            await channels.send(f"⚠️ @everyone 芮氏5.0以上地震報告⚠️")
         await channel.send(embed=embed)
     except Exception as err:
         print(err)
